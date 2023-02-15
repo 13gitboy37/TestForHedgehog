@@ -52,13 +52,37 @@
 		AF101F0D299CE0D20024C4A3 /* TestProjectForHedgehog */ = {
 			isa = PBXGroup;
 			children = (
-				AF101F0E299CE0D20024C4A3 /* AppDelegate.swift */,
-				AF101F12299CE0D20024C4A3 /* ViewController.swift */,
-				AF101F17299CE0D20024C4A3 /* Assets.xcassets */,
-				AF101F19299CE0D20024C4A3 /* LaunchScreen.storyboard */,
-				AF101F1C299CE0D20024C4A3 /* Info.plist */,
+				AF101F22299D01A70024C4A3 /* Flows */,
+				AF101F24299D023A0024C4A3 /* Resources */,
+				AF101F23299D01D00024C4A3 /* Environments */,
 			);
 			path = TestProjectForHedgehog;
+			sourceTree = "<group>";
+		};
+		AF101F22299D01A70024C4A3 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				AF101F0E299CE0D20024C4A3 /* AppDelegate.swift */,
+				AF101F12299CE0D20024C4A3 /* ViewController.swift */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		AF101F23299D01D00024C4A3 /* Environments */ = {
+			isa = PBXGroup;
+			children = (
+				AF101F1C299CE0D20024C4A3 /* Info.plist */,
+			);
+			path = Environments;
+			sourceTree = "<group>";
+		};
+		AF101F24299D023A0024C4A3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AF101F19299CE0D20024C4A3 /* LaunchScreen.storyboard */,
+				AF101F17299CE0D20024C4A3 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,7 +297,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZU4J9YA52M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TestProjectForHedgehog/Info.plist;
+				INFOPLIST_FILE = TestProjectForHedgehog/Environments/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -301,7 +325,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZU4J9YA52M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TestProjectForHedgehog/Info.plist;
+				INFOPLIST_FILE = TestProjectForHedgehog/Environments/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
