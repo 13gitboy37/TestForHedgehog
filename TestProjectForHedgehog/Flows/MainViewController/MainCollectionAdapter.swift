@@ -10,14 +10,14 @@ import UIKit
 final class MainCollectionAdapter: NSObject {
     
     //MARK: - Properties
-    
+    var images = [Images]()
 }
 
 //MARK: - DataSource
 
 extension MainCollectionAdapter: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        20
+        images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -25,6 +25,9 @@ extension MainCollectionAdapter: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseId,
                                                           for: indexPath) as? CollectionViewCell
         else { return UICollectionViewCell() }
+        let currentImage = images[indexPath.item]
+        
+        cell.configure(urlString: currentImage.original)
         
         return cell
     }
@@ -62,15 +65,15 @@ extension MainCollectionAdapter: UICollectionViewDelegateFlowLayout {
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         
         return UIEdgeInsets(top: Layout.spacing,
-                            left: Layout.spacing,
-                            bottom: Layout.spacing,
-                            right: Layout.spacing)
+                            left: Layout.spacing * 2,
+                            bottom: 0,
+                            right: 0)
     }
 }
 
 extension MainCollectionAdapter {
     private enum Layout {
-        static let spacing: CGFloat = 5
+        static let spacing: CGFloat = 8
     }
     
     func itemWidth(for width: CGFloat, spacing: CGFloat) -> CGFloat {

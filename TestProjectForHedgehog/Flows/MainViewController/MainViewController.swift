@@ -23,6 +23,7 @@ final class MainViewController: UIViewController {
     private var presenter: MainViewOutput?
     private var collectionAdapter: MainCollectionAdapter?
     
+    
     //MARK: - Init
     
     init(presenter: MainViewOutput?, adapter: MainCollectionAdapter?) {
@@ -48,13 +49,19 @@ final class MainViewController: UIViewController {
         mainView.configureUI()
         mainView.collectionView.dataSource = collectionAdapter
         mainView.collectionView.delegate = collectionAdapter
+        presenter?.getImages("Git")
     }
 }
 
 //MARK: - MainViewInput
 
 extension MainViewController: MainViewInput {
-    
+    func reloadCollectionView(with images: [Images]) {
+        collectionAdapter?.images = images
+        DispatchQueue.main.async {
+            self.mainView.collectionView.reloadData()
+        }
+    }
 }
 
 

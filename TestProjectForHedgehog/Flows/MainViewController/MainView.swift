@@ -17,7 +17,7 @@ final class MainView: UIView {
         return searchBar
     }()
     
-    private lazy var collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         
         layout.scrollDirection = .vertical
@@ -25,7 +25,6 @@ final class MainView: UIView {
         
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.reuseId)
-        collectionView.backgroundColor = .yellow
         
         return collectionView
     }()
