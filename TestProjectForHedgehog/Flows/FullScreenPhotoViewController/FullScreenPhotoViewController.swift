@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FullScreenPhotoViewController: UIViewController {
+final class FullScreenPhotoViewController: UIViewController {
     
     //MARK: - Properties
     
@@ -59,5 +59,9 @@ extension FullScreenPhotoViewController: FullScreenPhotoViewInput {
     
     func animationCompleted(direction: DirectionAnimation) {
         presenter?.animationCompleted(direction: direction)
+    }
+    
+    func goOriginal() {
+        presenter?.getLinkOriginal()
     }
 }

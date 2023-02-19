@@ -25,8 +25,17 @@ final class MainView: UIView {
         
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.reuseId)
+        collectionView.keyboardDismissMode = .onDrag
         
         return collectionView
+    }()
+    
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .black
+        activityIndicator.backgroundColor = .lightGray.withAlphaComponent(0.2)
+        activityIndicator.layer.cornerRadius = 5
+        return activityIndicator
     }()
     
     //MARK: - Init
@@ -58,11 +67,20 @@ final class MainView: UIView {
         }
     }
     
+    private func addActivityIndicator() {
+        collectionView.addSubview(activityIndicator)
+        
+        activityIndicator.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
+    }
+    
     func configureUI() {
         self.backgroundColor = .white
         
         addSearchBar()
         addCollectionView()
+        addActivityIndicator()
     }
     
     func setDelegateCollection(delegate: (UICollectionViewDelegate & UICollectionViewDataSource)) {
@@ -76,5 +94,13 @@ final class MainView: UIView {
     
     func reloadData() {
         collectionView.reloadData()
+    }
+    
+    func startAnimatingActivity() {
+        activityIndicator.startAnimating()
+    }
+    
+    func stopAnimatingActivity() {
+        activityIndicator.stopAnimating()
     }
 }

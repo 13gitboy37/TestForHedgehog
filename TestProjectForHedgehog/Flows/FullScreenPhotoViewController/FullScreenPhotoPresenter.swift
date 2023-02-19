@@ -10,16 +10,19 @@ import UIKit
 protocol FullScreenPhotoViewInput: AnyObject {
     func setupImages(_ urlArray: [String])
     func animationCompleted(direction: DirectionAnimation)
+    func goOriginal()
 }
 
 protocol FullScreenPhotoViewOutput {
     func setupImages()
     func animationCompleted(direction: DirectionAnimation)
+    func getLinkOriginal()
 }
 
 final class FullScreenPhotoPresenter {
     
     //MARK: - Properties
+    
     private var images = [Images]()
     private var index = 0
     
@@ -72,5 +75,12 @@ extension FullScreenPhotoPresenter: FullScreenPhotoViewOutput {
         default:
            createURLArray(leftIndexImage: index - 1, centralIndexImage: index, rightIndexImage: index + 1)
         }
+    }
+    
+    func getLinkOriginal() {
+        let urlString = images[index].link
+        
+        viewController?.navigationController?.present(AppBuilder.showOriginalViewController(urlString),
+                                                     animated: true)
     }
 }

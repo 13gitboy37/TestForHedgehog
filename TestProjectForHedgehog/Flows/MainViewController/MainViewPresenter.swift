@@ -58,6 +58,6 @@ extension MainPresenter: MainCollectionAdapterOutput {
     func goToFullScreen(_ images: [Images], index: Int) {
             viewController?.navigationController?.pushViewController(AppBuilder.fullScreenPhotoViewController(images,
                                                                                                    index: index),
-                                                          animated: true)
+                                                                     animated: true)
     }
 }
