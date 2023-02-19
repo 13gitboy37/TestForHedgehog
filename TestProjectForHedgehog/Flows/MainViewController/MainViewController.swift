@@ -23,6 +23,7 @@ final class MainViewController: UIViewController {
     private var presenter: MainViewOutput?
     private var collectionAdapter: MainCollectionAdapter?
     
+    private var timer = Timer()
     
     //MARK: - Init
     
@@ -47,9 +48,22 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         mainView.configureUI()
-        mainView.collectionView.dataSource = collectionAdapter
-        mainView.collectionView.delegate = collectionAdapter
-        presenter?.getImages("Git")
+        setUpDelegate()
+    }
+    
+    //MARK: - Methods
+    
+    private func setUpDelegate() {
+        guard let collectionAdapter = collectionAdapter else { return }
+        mainView.setDelegateCollection(delegate: collectionAdapter)
+        mainView.setSearchbarDelegate(delegate: self)
+    }
+}
+
+//MARK: - SearchBarDelegate
+extension MainViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            self.presenter?.searchPicture(searchText)
     }
 }
 
@@ -59,7 +73,7 @@ extension MainViewController: MainViewInput {
     func reloadCollectionView(with images: [Images]) {
         collectionAdapter?.images = images
         DispatchQueue.main.async {
-            self.mainView.collectionView.reloadData()
+            self.mainView.reloadData()
         }
     }
 }

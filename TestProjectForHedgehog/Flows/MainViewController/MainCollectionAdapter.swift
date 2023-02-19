@@ -7,10 +7,17 @@
 
 import UIKit
 
+protocol MainCollectionAdapterOutput: AnyObject {
+    func goToFullScreen(_ images: [Images], index: Int)
+}
+
 final class MainCollectionAdapter: NSObject {
     
     //MARK: - Properties
+    
     var images = [Images]()
+    weak var presenter: MainCollectionAdapterOutput?
+
 }
 
 //MARK: - DataSource
@@ -22,21 +29,24 @@ extension MainCollectionAdapter: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseId,
-                                                          for: indexPath) as? CollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.reuseId,
+                                                          for: indexPath) as? MainCollectionViewCell
         else { return UICollectionViewCell() }
+
         let currentImage = images[indexPath.item]
         
-        cell.configure(urlString: currentImage.original)
+        cell.configure(urlString: currentImage.thumbnail)
         
         return cell
     }
 }
 
-//MARK: - Delegate 
+//MARK: - Delegate
 
 extension MainCollectionAdapter: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter?.goToFullScreen(images, index: indexPath.item)
+    }
 }
 
 //MARK: - Delegate Flow Layout

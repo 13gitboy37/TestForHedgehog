@@ -17,14 +17,14 @@ final class MainView: UIView {
         return searchBar
     }()
     
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.reuseId)
+        collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.reuseId)
         
         return collectionView
     }()
@@ -40,14 +40,7 @@ final class MainView: UIView {
     }
     
     //MARK: - Methods
-    
-    func configureUI() {
-        self.backgroundColor = .white
-        
-        addSearchBar()
-        addCollectionView()
-    }
-    
+  
     private func addSearchBar() {
         self.addSubview(searchBar)
         
@@ -63,5 +56,25 @@ final class MainView: UIView {
             make.top.equalTo(searchBar.snp.bottom)
             make.leading.trailing.bottom.equalTo(safeAreaLayoutGuide)
         }
+    }
+    
+    func configureUI() {
+        self.backgroundColor = .white
+        
+        addSearchBar()
+        addCollectionView()
+    }
+    
+    func setDelegateCollection(delegate: (UICollectionViewDelegate & UICollectionViewDataSource)) {
+        collectionView.delegate = delegate
+        collectionView.dataSource = delegate
+    }
+    
+    func setSearchbarDelegate(delegate: UISearchBarDelegate) {
+        searchBar.delegate = delegate
+    }
+    
+    func reloadData() {
+        collectionView.reloadData()
     }
 }

@@ -11,7 +11,7 @@ struct ImagesResults {
     let images: [Images]
 }
 
-extension ImagesResults: Codable {
+extension ImagesResults: Decodable {
     enum CodingKeys: String, CodingKey {
         case images = "images_results"
     }
