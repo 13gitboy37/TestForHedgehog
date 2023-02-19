@@ -46,7 +46,7 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.navigationBar.topItem?.title = "Search via Google"
         mainView.configureUI()
         setUpDelegate()
     }
@@ -63,7 +63,8 @@ final class MainViewController: UIViewController {
 //MARK: - SearchBarDelegate
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            self.presenter?.searchPicture(searchText)
+        mainView.startAnimatingActivity()
+        self.presenter?.searchPicture(searchText)
     }
 }
 
@@ -73,6 +74,7 @@ extension MainViewController: MainViewInput {
     func reloadCollectionView(with images: [Images]) {
         collectionAdapter?.images = images
         DispatchQueue.main.async {
+            self.mainView.stopAnimatingActivity()
             self.mainView.reloadData()
         }
     }

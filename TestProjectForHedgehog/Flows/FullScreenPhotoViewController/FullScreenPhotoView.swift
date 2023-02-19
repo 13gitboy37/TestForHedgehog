@@ -47,6 +47,7 @@ final class FullScreenPhotosView: UIView {
         button.setTitle("Open original source", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .black
+        button.addTarget(self, action: #selector(showOriginal), for: .touchUpInside)
         return button
     }()
     
@@ -157,6 +158,11 @@ final class FullScreenPhotosView: UIView {
     private func nextImage() {
         rightImageView.isHidden = false
         showRightImage()
+    }
+    
+    @objc
+    private func showOriginal() {
+        viewController?.goOriginal()
     }
     
     func configureUI() {
