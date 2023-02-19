@@ -9,16 +9,16 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-final class CollectionViewCell: UICollectionViewCell {
+final class MainCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Propeties
-    
-    static let reuseId = "CollectionCell"
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
+    
+    static let reuseId = "CollectionCell"
     
     //MARK: - Init
     
@@ -37,17 +37,17 @@ final class CollectionViewCell: UICollectionViewCell {
         addImageView()
     }
     
-    override func prepareForReuse() {
-        imageView.image = nil
-    }
-    
     private func addImageView() {
         self.addSubview(imageView)
         
         imageView.snp.makeConstraints { make in
             make.margins.equalTo(contentView)
-            make.width.height.equalTo(contentView.frame.width)
+            make.width.height.equalTo(contentView.frame.size.width)
         }
+    }
+    
+    override func prepareForReuse() {
+        imageView.image = nil
     }
     
     func configure(urlString: String) {
